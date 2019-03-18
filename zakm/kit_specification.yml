@@ -1,0 +1,321 @@
+---
+visibility_conditions:
+  - name: Night
+  - name: Day
+terrain_conditions:
+  - name: Arid
+    worlds:
+      - farkhar
+      - mcn_aliabad 
+      - clafghan 
+      - desert_e 
+      - desert_island 
+      - dya 
+      - fallujah 
+      - mcn_hazarkot 
+      - isladuala3 
+      - kidal 
+      - lythium 
+      - porto 
+      - reshmaan 
+      - shapur_baf 
+      - takistan 
+      - mountains_acr 
+      - zargabad 
+      - kunduz 
+      - fata
+  - name: Transitional
+    worlds: 
+      - altis
+      - abel
+      - malden
+      - provinggrounds_pmc
+      - intro
+      - sara
+      - saralite
+      - stratis
+      - uhao
+      - sara_dbe1
+      - vr
+  - name: Woodland
+    worlds:
+      - bootcamp_acr
+      - cain
+      - woodland_acr
+      - chernarus
+      - eden
+      - noe
+      - kapaulio
+      - chernarus_summer
+      - tanoa
+      - utes
+      - bornholm
+      - pja305
+      - panthera3
+      - anim_helvantis_v2
+      - tem_ihantala
+kit_collections:
+  - name: Grunt clothing
+    goggles: 
+      - type: G_Combat
+    headgear:
+      - type: H_HelmetSpecB_paint2
+        terrain_conditions:
+          - Arid
+      - type: H_HelmetSpecB_snakeskin
+        terrain_conditions:
+          - Transitional
+      - type: H_HelmetB_Enh_tna_F
+        terrain_conditions:
+          - Woodland
+    uniforms:
+      - type: za_fat1_soldier_arid
+        terrain_conditions:
+          - Arid
+      - type: za_fat1_soldier_trans
+        terrain_conditions:
+          - Transitional
+          - Woodland
+    vests:
+      - type: za_vst_carrier_arid
+        terrain_conditions:
+          - Arid
+      - type: za_vst_carrier_trans
+        terrain_conditions:
+          - Transitional
+          - Woodland
+  - name: Grunt on person navigation
+    maps:
+      - type: ItemMap
+    compasses:
+      - type: ItemCompass
+    watches:
+      - type: ItemWatch
+  - name: Peronal radio
+    miscelaneous:
+      - type: ACRE_PRC343
+  - name: Grunt backpacks
+    backpacks:
+    - type: za_bag_carryall_arid
+      terrain_conditions:
+        - Arid
+    - type: za_bag_carryall_trans
+      terrain_conditions:
+        - Transitional
+        - Woodland
+  - name: Personal medical
+    miscelaneous:
+      - type: ACE_elasticBandage
+        count: 5
+      - type: ACE_packingBandage
+        count: 5
+      - type: ACE_quikclot
+        count: 5
+      - type: ACE_fieldDressing
+        count: 5
+      - type: ACE_epinephrine
+      - type: ACE_morphine
+      - type: ACE_tourniquet
+      - type: ACE_salineIV_500
+      - type: adv_aceSplint_splint
+      - type: ACE_EarPlugs
+  - name: Standard sidearm
+    sidearms:
+      - type: hgun_P07_F
+    magazines:
+      - type: 16Rnd_9x21_Mag
+        count: 4
+  - name: Standard rifle
+    primary_weapons:
+      - type: SMA_M4afg_SM
+  - name: Standard rifle optics
+    optics:
+      - type: sma_spitfire_03_rds_black
+      - type: sma_spitfire_01_black
+        group_conditions:
+          - CQC
+    side_attachments:
+      - type: SMA_SFPEQ_M4TOP_BLK
+  - name: Standard rifle ammo
+    magazines:
+      - type: SMA_30Rnd_556x45_M855A1
+        count: 8
+      - type: SMA_30Rnd_556x45_M855A1_Tracer
+        count: 2
+  - name: Night navigation
+    miscelaneous:
+      - type: ACE_MapTools
+      - type: ACE_Flashlight_MX991
+        visibility_conditions:
+          - Night
+    nvgs:
+      - type: CUP_NVG_GPNVG_tan
+        visibility_conditions:
+          - Night
+        terrain_conditions:
+          - Arid
+      - type: CUP_NVG_GPNVG_black
+        visibility_conditions:
+          - Night
+        terrain_conditions:
+          - Transitional
+      - type: CUP_NVG_GPNVG_tan
+        visibility_conditions:
+          - Night
+        terrain_conditions:
+          - Woodland
+  - name: Grunt grenades
+    grenades:
+      - type: HandGrenade
+        count: 4
+      - type: ACE_M84
+        count: 2
+      - type: SmokeShell
+        count: 8
+      - type: SmokeShellGreen
+        count: 2
+      - type: SmokeShellBlue
+        count: 2
+      - type: SmokeShellRed
+        count: 2
+      - type: HandGrenade
+        count: -2
+        group_conditions:
+          - CQC
+      - type: ACE_M84
+        count: 2
+        group_conditions:
+          - CQC
+      - type: ACE_Chemlight_HiWhite
+        count: 2
+        visibility_conditions:
+          - Night
+      - type: ACE_Chemlight_UltraHiOrange
+        count: 2
+        visibility_conditions:
+          - Night
+      - type: ACE_IR_Strobe_Item
+        visibility_conditions:
+          - Night
+      - type: B_IR_Grenade
+        visibility_conditions:
+          - Night
+  - name: Observer
+    binoculars:
+      - type: Laserdesignator
+        role_conditions:
+          - Observer
+        terrain_conditions:
+          - Arid
+      - type: Laserdesignator_03
+        role_conditions:
+          - Observer
+        terrain_conditions:
+          - Transitional
+      - type: Laserdesignator_01_khk_F
+        role_conditions:
+          - Observer
+        terrain_conditions:
+          - Woodland
+    magazines:
+      - type: Laserbatteries
+        role_conditions:
+          - Observer
+  - name: Handcuffs
+    miscelaneous:
+      - type: ACE_CableTie
+        count: 4
+  - name: Resupply crate explosive
+    explosives:
+      - type: DemoCharge_Remote_Mag
+  - name: Team leader radio
+    miscelaneous:
+      - type: ACRE_PRC152
+      - type: ACRE_PRC117F
+        role_conditions:
+          - Long range communication
+      - type: ACRE_PRC152
+        count: -1
+        role_conditions:
+          - Long range communication
+  - name: MAAWS 1 round bearer
+    magazines:
+      - type: tf47_m3maaws_HEDP
+        role_conditions:
+          - MAAWS HEDP bearer
+      - type: tf47_m3maaws_HEAT
+        role_conditions:
+          - MAAWS HEAT bearer
+      - type: tf47_m3maaws_HE
+        role_conditions:
+          - MAAWS HE bearer
+      - type: tf47_m3maaws_SMOKE
+        role_conditions:
+          - MAAWS smoke bearer
+      - type: tf47_m3maaws_ILLUM
+        role_conditions:
+          - MAAWS illumination bearer
+  - name: LMG 1 box bearer
+    magazines:
+      - type: 200Rnd_556x45_Box_Red_F
+        role_conditions:
+          - LMG bearer
+group_types:
+  - title: Rifle Squad
+    description: General purpose light infantry squad that maneuvers and closes with the 
+      enemy.
+    group_conditions:
+      - name: CQC
+    groups: 
+      - Dragon'1
+      - Dragon'2
+    roles:
+      - title: Squad Leader
+        description: The Squad Leader’s primary responsibility is controlling the actions 
+          of the squad while responding to the directions of the Platoon Leader and 
+          coordinating the squad’s actions with the rest of the platoon.
+        match: "[SL]"
+        role_conditions:
+          - name: LMG bearer
+          - name: MAAWS HEDP bearer
+          - name: MAAWS HEAT bearer
+          - name: MAAWS HE bearer
+          - name: MAAWS smoke bearer
+          - name: MAAWS illumination bearer
+          - name: Long range communication
+          - name: Observer
+        on_person:
+          uniform_cargo:
+            kit_collections:
+              - Personal medical
+          kit_collections:
+            - Grunt clothing
+            - Grunt on person navigation
+        crate_cargo:
+          - crate: crate
+            binoculars:
+              - type: ACE_Vector
+            interfaces:
+              - type: ItemAndroid
+            kit_collections: 
+              - Standard sidearm
+              - Standard rifle
+              - Standard rifle optics
+              - Standard rifle ammo
+              - Night navigation
+              - Grunt grenades
+              - Handcuffs
+              - Peronal radio
+              - Observer
+              - Team leader radio
+              - MAAWS 1 round bearer
+              - LMG 1 box bearer
+          - crate: resupply
+            kit_collections:
+              - Peronal medical
+              - Standard rifle ammo
+              - Grunt grenades
+              - Resupply crate explosive
+              - MAAWS 1 round bearer
+              - LMG 1 box bearer
+...
