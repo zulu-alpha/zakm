@@ -110,3 +110,14 @@ kit_collections:
     miscelaneous:
       - type: ACRE_PRC343
 ```
+
+## References
+
+For more information on YAML, you can try cheat sheets like these:
+
+* [Dan's cheat sheet](https://cheat.readthedocs.io/en/latest/yaml.html)
+* [lzone.de](https://lzone.de//cheat-sheet/YAML)
+* [YAML to JSON](https://medium.com/@kenichishibata/yaml-to-json-cheatsheet-c3ac3ef519b8)
+* [Learn X in Y minutes](https://learnxinyminutes.com/docs/yaml/)
+
+Or the [official specification document](https://yaml.org/spec/1.2/spec.html).
