@@ -56,7 +56,7 @@ terrain_conditions:
       - tem_ihantala
 kit_collections:
   - name: Grunt clothing
-    goggles: 
+    goggles:
       - type: G_Combat
     headgear:
       - type: H_HelmetSpecB_paint2
@@ -129,7 +129,7 @@ kit_collections:
     primary_weapons:
       - type: SMA_M4afg_SM
   - name: Standard rifle optics
-    optics:
+    optic_attachments:
       - type: sma_spitfire_03_rds_black
       - type: sma_spitfire_01_black
         group_conditions:

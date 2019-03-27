@@ -5139,7 +5139,7 @@
             "display_name": "sub 6.8x43 30rnd IR Mag"
         }
     },
-    "Map": {
+    "Maps": {
         "ItemMap": {
             "description": "Enables viewing map.",
             "display_name": "Map"
