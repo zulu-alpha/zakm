@@ -78,5 +78,192 @@ Simply lowercase versions of what is found in the [ZAKI](https://github.com/zulu
 * `vests`
 * `watches`
 
+## Equipable kit
+
+Kit can be equipped directly to 
+
+## Kit containers
+
+A kit container is just an object that can end up containing any number of any category of kit, and there are 4 kinds of kit containers.
+
+There are crate containers, for example:
+
+```yaml
+crate_cargo:
+  - crate: Main
+    binoculars:
+      - type: ACE_Vector
+    interfaces:
+      - type: ItemAndroid
+  - crate: Medical
+    miscelaneous:
+      - type: ACE_elasticBandage
+        count: 5
+      - type: ACE_packingBandage
+        count: 5
+```
+
+Each crate has a name (for e.g: `Main` and `Medical`) and are elements in an array that belongs to the `crate_cargo` object.
+
+The other containers are on an actual person. There are 3 and each of them and how they are written are as follow:
+
+* `uniform_cargo`
+* `vest_cargo`
+* `backpack_cargo`
+
+An example of how to use them is as follows:
+
+```yaml
+on_person:
+  uniform_cargo:
+    miscelaneous:
+      - type: ACE_elasticBandage
+        count: 5
+      - type: ACE_packingBandage
+        count: 5
+  vest_cargo:
+    grenades:
+      - type: HandGrenade
+        count: 4
+      - type: ACE_M84
+        count: 2
+  backpack_cargo:
+    grenades:
+      - type: SmokeShellBlue
+        count: 2
+      - type: SmokeShellRed
+        count: 2
+```
+
 ## Kit object conditions
 
+You can set a condition for a particular kit object, so that it only gets applied when certain conditions are met and the ZAKM auto-documentation feature will also let the reader know under which conditions the kit is intended to be used.
+
+There are 4 types of conditions. The are no hard coded conditions for any of the condition types, as they are all user defined in the specification file.
+The ZAKM will detect which conditions are available in the file and ask which ones to use when the ZAKM applied on a mission.sqm.
+
+The 4 types of kit conditions and how they are written are:
+
+* `visibility_conditions`
+* `terrain_conditions`
+* `group_conditions`
+* `role_conditions`
+
+More on exactly what they are and where to define them under the *Condition definitions* heading later on.
+
+Each condition type can have any number of conditions, which are just user defined strings in an array.
+
+To add a condition to a kit object, you simply add the condition type key that the condition belongs to in the kit object and specify all the conditions that the kit should be applied for. For example:
+
+```yaml
+type: za_fat1_soldier_trans
+  terrain_conditions:
+    - Transitional
+    - Woodland
+```
+
+Notice that the two conditions, `Transitional` and `Woodland`. This allows you to for example have a certain item of clothing applied for both Transitional and Woodland terrain conditions.
+
+You can also have as many of the 4 condition types at the same time, such as in this example:
+
+```yaml
+- type: CUP_NVG_GPNVG_tan
+  visibility_conditions:
+    - Night
+  terrain_conditions:
+    - Arid
+```
+
+Here, these particular Tan coloured NVGs are only used when it is both night and arid.
+
+### Condition definitions
+
+Each condition is defined by a condition object, which is basically just this key value pair:
+
+```yaml
+- name: <Some condition name>
+```
+
+The exception to this is with Terrain conditions, where they will also have a `worlds` attribute. Examples will be given below.
+
+Notice as well that the above object is an element in an array, as you will necessarily want to implement several conditions for each condition type.
+
+The 4 condition types are:
+
+#### Visibility conditions
+
+Examples are day or night. Other conditions such as heavy fog could also be added here.
+This is a top level condition that is shared across all groups and roles.
+
+This is defined at the top level of the specification file (not inside anything like a group).
+
+For example:
+
+```yaml
+visibility_conditions:
+  - name: Night
+  - name: Day
+```
+
+#### Terrain conditions
+
+Examples are Arid, Transitional or Woodland. Other terrain conditions could be added such as Snow.
+This is also a top level condition that is shared across all groups and roles.
+
+This is also defined at the top level of the specification file (not inside anything like a group).
+
+This condition type is different from the others due to the *worlds* key, which allows the ZAKM to automatically detect which terrain the mission.sqm belongs to and choose the right terrain condition for you.
+The corresponding value is an array of strings.
+
+```yaml
+name: <Some condition name>
+worlds:
+  - <Some terrain name>
+  - <Some terrain name>
+```
+
+Where `<Some terrain name>` is the [world name](https://community.bistudio.com/wiki/worldName) of the terrain and there can be as many of them as you like.
+
+For example:
+
+```yaml
+terrain_conditions:
+  - name: Arid
+    worlds:
+      - takistan
+      - zargabad
+  - name: Transitional
+    worlds:
+      - altis
+      - malden
+      - stratis
+  - name: Woodland
+    worlds:
+      - chernarus
+      - tanoa
+```
+
+#### Group conditions
+
+Examples are CQC or Long Range. There are many other possibilities here depending on the groups mission and situation.
+This is a group level condition defined inside the scope of a group that is shared across all roles in the same group.
+
+For example:
+
+```yaml
+group_conditions:
+  - name: CQC
+  - name: Long Range
+  - name: Wetworks
+```
+
+#### Role conditions
+
+Examples are Ammo Bearer or Laser Designator, along with many other possibilities.
+This is a condition that is defined inside of a role and which only effects that paricular role.
+
+```yaml
+role_conditions:
+  - name: Long range communication
+  - name: Laser designator
+```

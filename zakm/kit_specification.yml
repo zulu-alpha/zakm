@@ -200,27 +200,27 @@ kit_collections:
       - type: B_IR_Grenade
         visibility_conditions:
           - Night
-  - name: Observer
+  - name: Laser designator
     binoculars:
       - type: Laserdesignator
         role_conditions:
-          - Observer
+          - Laser designator
         terrain_conditions:
           - Arid
       - type: Laserdesignator_03
         role_conditions:
-          - Observer
+          - Laser designator
         terrain_conditions:
           - Transitional
       - type: Laserdesignator_01_khk_F
         role_conditions:
-          - Observer
+          - Laser designator
         terrain_conditions:
           - Woodland
     magazines:
       - type: Laserbatteries
         role_conditions:
-          - Observer
+          - Laser designator
   - name: Handcuffs
     miscelaneous:
       - type: ACE_CableTie
@@ -283,7 +283,7 @@ group_types:
           - name: MAAWS smoke bearer
           - name: MAAWS illumination bearer
           - name: Long range communication
-          - name: Observer
+          - name: Laser designator
         on_person:
           uniform_cargo:
             kit_collections:
@@ -306,7 +306,7 @@ group_types:
               - Grunt grenades
               - Handcuffs
               - Peronal radio
-              - Observer
+              - Laser designator
               - Team leader radio
               - MAAWS 1 round bearer
               - LMG 1 box bearer
