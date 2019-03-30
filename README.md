@@ -1,12 +1,29 @@
 # Zulu-Alpha Kit Manager
 
-Uses a [ZAKI](https://github.com/zulu-alpha/zaki) DB and kit specification YAML files to modify mission.sqm files to load out units and crates accordingly and generate am accompanying human readable document.
+The ZAKM uses a [ZAKI](https://github.com/zulu-alpha/zaki) DB and kit specification YAML file to modify a mission.sqm file, in order to load out units and crates and also to generate an accompanying human readable document.
+
+This allows there to be one **Source of Truth** file for all kit available to specific groups and roles in a mission. This source of truth file is used to do the actual kitting out of the mission file and generation of a document for WARNORDs or other mission related documents, all with a single action, thus minimizing the work that needs to be done and minimizing the chance for discrepencies between documentation and actually available kit. The ZAKM thus enables the principle of **DRY** (**D**on't **R**epear **Y**ourself) for your kit.
+
+This file also allows different kit to be loaded depending on different conditions, such as terrain conditions and mission type, thus maximizing the re-use of the specification file.
 
 ## Kit specification file
 
-All kit for all units and crates and the generated human readable documents are derived from kit specification files written in YAML. If you would like to learn only what you need to edit the kit specification file, then please see the [Quick Yaml Intro](https://github.com/zulu-alpha/zakm/blob/master/quick-yaml-intro.md)
+All kit for all units and crates and the generated human readable documents are derived from kit specification files written in YAML. If you would like to learn only what you need to edit the kit specification file, then please see the [Quick Yaml Intro](https://github.com/zulu-alpha/zakm/blob/master/quick-yaml-intro.md).
 
 All the keys in the kit specification files have special meaning and their level in the document hierarchy is important.
+
+### Structure
+
+On the top level of the document, there are specifications for visibility and terrain conditions (more on those under the heading **Kit object conditions**), universal kit collections (more on kit collections under the heading **Kit collections**), universal crate cargo (more on crate cargo under the heading **Kit containers**) and finally the object **Group types**.
+
+**Group types** is an object that holds an array of all of the different group type objects and their corresponding units (represented by **roles**) that will be equipped. An important thing to note is that several different groups that need to be kitted out the exact same way can all be dealt with in the same group type object.
+
+A group type object has several keys:
+
+* `title`
+  * A short word or phrase describing the group (eg: `Rifle Squad`)
+* `description` (Optional)
+  * A longer description
 
 ## Kit objects
 
@@ -203,6 +220,7 @@ crate_cargo:
 ```
 
 Each crate has a name (for e.g: `Main` and `Medical`) and are elements in an array that belongs to the `crate_cargo` object.
+Crate cargo can be in the scope of a group, or at the top level of the document, which can be shared among all groups.
 
 The other containers are on an actual person, in the `on_person` object. There are 3 and each of them and how they are written are as follow:
 
@@ -368,3 +386,5 @@ role_conditions:
   - name: Long range communication
   - name: Laser designator
 ```
+
+## Kit collections
