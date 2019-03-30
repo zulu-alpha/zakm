@@ -195,7 +195,7 @@ crate_cargo:
     interfaces:
       - type: ItemAndroid
   - crate: Medical
-    miscelaneous:
+    miscellaneous:
       - type: ACE_elasticBandage
         count: 5
       - type: ACE_packingBandage
@@ -215,7 +215,7 @@ An example of how to use them is as follows:
 ```yaml
 on_person:
   uniform_cargo:
-    miscelaneous:
+    miscellaneous:
       - type: ACE_elasticBandage
         count: 5
       - type: ACE_packingBandage
