@@ -66,21 +66,120 @@ Simply lowercase versions of what is found in the [ZAKI](https://github.com/zulu
 * `interfaces`
 * `magazines`
 * `maps`
-* `miscelaneous`
+* `miscellaneous`
 * `muzzle_attachments`
 * `nvgs`
 * `optic_attachments`
 * `primary_weapons`
 * `secondary_weapons`
-* `side_attachemnts`
+* `side_attachments`
 * `sidearms`
 * `uniforms`
 * `vests`
 * `watches`
 
-## Equipable kit
+## equippable kit
 
-Kit can be equipped directly to 
+Kit can be equipped directly to a person, via their role.
+This is done by simply putting a kit object and it's category in the `on_person` object of that role.
+For example, to equip a uniform to a role:
+
+```yaml
+on_person:
+  uniforms:
+    - type: za_fat1_soldier_arid
+```
+
+Note that the kit object is part of an array. This is because the ZAKM allows different equippable kit to be equipped depending on different conditions.
+For example, to equip a different uniform depending terrain conditions, you would write it like so:
+
+```yaml
+on_person:
+  uniforms:
+    - type: za_fat1_soldier_arid
+      terrain_conditions:
+        - Arid
+    - type: za_fat1_soldier_trans
+      terrain_conditions:
+        - Transitional
+```
+
+More on conditions later, under the heading **Kit object conditions**.
+
+Note that when actually using a specification file to kit out units in a mission.sqm, once all conditions are determined (such as terrain conditions in this example), then only one kit object for each category must remain, otherwise an error will be thrown, as only one kit object for each kit category can be equipped at a time.
+
+All of the possible equippable kit categories and how to write them are:
+
+* `backpacks`
+* `binoculars`
+* `compasses`
+* `goggles`
+* `headgear`
+* `interfaces`
+* `maps`
+* `nvgs`
+* `primary_weapons`
+* `secondary_weapons`
+* `sidearms`
+* `uniforms`
+* `vests`
+* `watches`
+
+### Kit for equippable kit
+
+Certain equippable kit categories can have their own kit such as weapon attachments and magazines. These are:
+
+* `binoculars`
+* `primary_weapons`
+* `secondary_weapons`
+* `sidearms`
+
+To actually equip kit to those categories, you use these keys:
+
+* `on_binoculars`
+* `on_primary_weapon`
+* `on_secondary_weapon`
+* `on_sidearm`
+
+The kit categories that you can equip to those kit categories are:
+
+* `bipod_attachments`
+* `muzzle_attachments`
+* `optic_attachments`
+* `side_attachments`
+* `magazines`
+
+However, there can be two different muzzles (for example a rifle with an underslung grenade launcher), so `magazines` needs to be contained in one of two special keys, namely:
+
+* `primary_muzzle_magazines`
+* `secondary_muzzle_magazines`
+
+To put all of this together with an example:
+
+```yaml
+on_person:
+  primary_weapons:
+    - type: arifle_SPAR_01_GL_blk_F
+  on_primary_weapon:
+    bipod_attachments:
+      - type: bipod_01_F_blk
+    muzzle_attachments:
+      - type: muzzle_snds_M
+    optic_attachments:
+      - type: optic_Holosight_blk_F
+    side_attachments:
+      - type: acc_pointer_IR
+    primary_muzzle_magazines:
+      magazines:
+        - type: 30Rnd_556x45_Stanag
+    secondary_muzzle_magazines:
+      magazines:
+        - type: 1Rnd_HE_Grenade_shell
+```
+
+Please note that the rifle in the above example can't actually have a bipod, but for illustrative purposes, one was added anyway.
+
+Also please note that at this time, the ZAKM does not validate that a compatible attachment or magazine is used for a given weapon or binocular. Using an incompatible kit will break the game in strange ways, so please make sure that you use the right ones.
 
 ## Kit containers
 
@@ -105,7 +204,7 @@ crate_cargo:
 
 Each crate has a name (for e.g: `Main` and `Medical`) and are elements in an array that belongs to the `crate_cargo` object.
 
-The other containers are on an actual person. There are 3 and each of them and how they are written are as follow:
+The other containers are on an actual person, in the `on_person` object. There are 3 and each of them and how they are written are as follow:
 
 * `uniform_cargo`
 * `vest_cargo`
@@ -134,6 +233,8 @@ on_person:
       - type: SmokeShellRed
         count: 2
 ```
+
+You would of course also need to specify a uniform, vest and backpack to contain those kit objects in the given example.
 
 ## Kit object conditions
 

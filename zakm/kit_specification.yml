@@ -92,7 +92,7 @@ kit_collections:
     watches:
       - type: ItemWatch
   - name: Peronal radio
-    miscelaneous:
+    miscellaneous:
       - type: ACRE_PRC343
   - name: Grunt backpacks
     backpacks:
@@ -104,7 +104,7 @@ kit_collections:
         - Transitional
         - Woodland
   - name: Personal medical
-    miscelaneous:
+    miscellaneous:
       - type: ACE_elasticBandage
         count: 5
       - type: ACE_packingBandage
@@ -143,7 +143,7 @@ kit_collections:
       - type: SMA_30Rnd_556x45_M855A1_Tracer
         count: 2
   - name: Night navigation
-    miscelaneous:
+    miscellaneous:
       - type: ACE_MapTools
       - type: ACE_Flashlight_MX991
         visibility_conditions:
@@ -222,14 +222,14 @@ kit_collections:
         role_conditions:
           - Laser designator
   - name: Handcuffs
-    miscelaneous:
+    miscellaneous:
       - type: ACE_CableTie
         count: 4
   - name: Resupply crate explosive
     explosives:
       - type: DemoCharge_Remote_Mag
   - name: Team leader radio
-    miscelaneous:
+    miscellaneous:
       - type: ACRE_PRC152
       - type: ACRE_PRC117F
         role_conditions:
