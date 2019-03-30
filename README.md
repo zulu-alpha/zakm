@@ -4,9 +4,9 @@ Uses a [ZAKI](https://github.com/zulu-alpha/zaki) DB and kit specification YAML 
 
 ## Kit specification file
 
-All kit for all units and crates and the generated human readable documents are derived from kit specification files written in YAML. If you would like to learn only what you need to edit the kit specification file, then pelase see the [Quick Yaml Intro](https://github.com/zulu-alpha/zakm/blob/master/quick-yaml-intro.md)
+All kit for all units and crates and the generated human readable documents are derived from kit specification files written in YAML. If you would like to learn only what you need to edit the kit specification file, then please see the [Quick Yaml Intro](https://github.com/zulu-alpha/zakm/blob/master/quick-yaml-intro.md)
 
-All the keys in the kit specification files have special meaning and their level in the document hirearchy is important.
+All the keys in the kit specification files have special meaning and their level in the document hierarchy is important.
 
 ## Kit objects
 
@@ -361,7 +361,7 @@ group_conditions:
 #### Role conditions
 
 Examples are Ammo Bearer or Laser Designator, along with many other possibilities.
-This is a condition that is defined inside of a role and which only effects that paricular role.
+This is a condition that is defined inside of a role and which only effects that particular role.
 
 ```yaml
 role_conditions:
