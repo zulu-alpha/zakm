@@ -266,7 +266,7 @@ group_types:
       enemy.
     group_conditions:
       - name: CQC
-    groups: 
+    groups_names: 
       - Dragon'1
       - Dragon'2
     roles:
@@ -274,7 +274,7 @@ group_types:
         description: The Squad Leader’s primary responsibility is controlling the actions 
           of the squad while responding to the directions of the Platoon Leader and 
           coordinating the squad’s actions with the rest of the platoon.
-        match: "[SL]"
+        in_role_description: "[SL]"
         role_conditions:
           - name: LMG bearer
           - name: MAAWS HEDP bearer

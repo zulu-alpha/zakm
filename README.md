@@ -16,14 +16,50 @@ All the keys in the kit specification files have special meaning and their level
 
 On the top level of the document, there are specifications for visibility and terrain conditions (more on those under the heading **Kit object conditions**), universal kit collections (more on kit collections under the heading **Kit collections**), universal crate cargo (more on crate cargo under the heading **Kit containers**) and finally the object **Group types**.
 
+#### Group types
+
 **Group types** is an object that holds an array of all of the different group type objects and their corresponding units (represented by **roles**) that will be equipped. An important thing to note is that several different groups that need to be kitted out the exact same way can all be dealt with in the same group type object.
 
 A group type object has several keys:
 
 * `title`
-  * A short word or phrase describing the group (eg: `Rifle Squad`)
+  * A short word or phrase describing the group (eg: `Rifle Squad`).
 * `description` (Optional)
-  * A longer description
+  * A longer description.
+* `groups_names`
+  * An array of all the names for all the groups in the mission that needs to be kitted out according to this group type object.
+* `group_conditions` (Optional)
+  * Possible kit conditions that only apply to that group type (more on group conditions under the heading **Kit object conditions**).
+* `roles`
+  * An array of **role objects** that represents all the unit roles the group has.
+
+### Group naming
+
+The ZAKM kits out all units and optionally even some crates based on which group they are in, in addion to unit role.
+The format used to declare which unit or crate belongs to which group is the [CBA_A3 Name Groups in Lobby](https://github.com/CBATeam/CBA_A3/wiki/Name-Groups-in-Lobby) format.
+
+This works by loading up the mission in the Eden editor and in the unit's *Role Description*, putting a `@Group Name` right after whatever was put there, with no spaces in between.
+So for example, if you have in the role description for a unit `[SL]` to signify a Squad Leader, and that squad leader belongs to a group called `Dragon'1`, then you would modify the field like so: `[SL]@Dragon'1`. You would have to do this for every unit in the group.
+
+The same goes for crates. So if you have a crate such as a resupply crate dedicated to a specific group, such as for example the afore mentioned `Dragon'1`, and you want to call that crate `resupply`, then the *Role Description* would read: `resupply@Dragon'1`
+
+Note that CBA_A3 is not a required mod for the ZAKM despite using this naming convention.
+The ZAKM can be updated in the future if an issue is made for it, to not require every unit in the group to be named according to this format, or even not use this format at all (crates would still need it though).
+
+#### Roles
+
+In the specification file, specific units are not defined directly, but by their role type (Such as for example Rifleman or Medic), so if you have multiple units in the same group that have the same role, then you only have to specify them once.
+
+Roles are defined in **role objects**, and as seen above for Group types, those role objects are listed in an array under the `roles` attribute for their relevant group type.
+
+A role object has several keys:
+
+* `title`
+  * A short word or phrase describing the role (eg: `Squad Leader`).
+* `description` (Optional)
+  * A longer description.
+* `in_role_description`
+  * 
 
 ## Kit objects
 
