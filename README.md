@@ -82,7 +82,7 @@ A role object has several keys:
 * `in_role_description`
   * The piece of text in a unit's *Role Description* that will identify the unit as belonging to this role.
   * For example, if you have two rifleman in two different fire teams that are in the same group (i.e: A squad) called `Dragon'1` and those rifleman are called `1 [R]@Dragon'1` and `2 [R]@Dragon'1`, then in role object for the rifleman role for the group, you would put in it's `in_role_description`: `"[R]"`, as that is common to both units and to any other groups of the same type, for example a Dragon'2.
-* `role_conditions`
+* `role_condition_definitions`
   * Possible kit conditions that only apply to the role (more on role conditions under the heading **Kit object conditions**).
 * `on_person`
   * Equippable kit and kit containers that go onto each of the units of that role. More information of those under the *Equippable kit* and *Kit containers* headings.
@@ -95,7 +95,7 @@ roles:
   - title: <String>
     description: <String>
     in_role_description: <String>
-    role_conditions: <Array of condition objects>
+    role_condition_definitions: <Array of condition objects>
     on_person: <Array of kit objects in kit cargo or equipable kit objects>
     crate_cargo: <Array of crate kit containers>
 ```
