@@ -266,7 +266,7 @@ group_types:
       enemy.
     group_condition_definitions:
       - name: CQC
-    groups_names: 
+    group_names: 
       - Dragon'1
       - Dragon'2
     roles:

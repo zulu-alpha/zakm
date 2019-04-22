@@ -35,7 +35,7 @@ A group type object has several keys:
   * A short word or phrase describing the group (eg: `Rifle Squad`).
 * `description` (Optional)
   * A longer description.
-* `groups_names`
+* `group_names`
   * An array of all the names for all the groups in the mission that needs to be kitted out according to this group type object.
 * `group_conditions` (Optional)
   * Possible kit conditions that only apply to that group type (more on group conditions under the heading **Kit object conditions**).
