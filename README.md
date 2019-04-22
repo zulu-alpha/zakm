@@ -2,7 +2,7 @@
 
 The ZAKM uses a [ZAKI](https://github.com/zulu-alpha/zaki) DB and kit specification YAML file to modify a mission.sqm file, in order to load out units and crates and also to generate an accompanying human readable document.
 
-This allows there to be one **Source of Truth** file for all kit available to specific groups and roles in a mission. This source of truth file is used to do the actual kitting out of the mission file and generation of a document for WARNORDs or other mission related documents, all with a single action, thus minimizing the work that needs to be done and minimizing the chance for discrepencies between documentation and actually available kit. The ZAKM thus enables the principle of **DRY** (**D**on't **R**epear **Y**ourself) for your kit.
+This allows there to be one **Source of Truth** file for all kit available to specific groups and roles in a mission. This source of truth file is used to do the actual kitting out of the mission file and generation of a document for WARNORDs or other mission related documents, all with a single action, thus minimizing the work that needs to be done and minimizing the chance for discrepancies between documentation and actually available kit. The ZAKM thus enables the principle of **DRY** (**D**on't **R**epear **Y**ourself) for your kit.
 
 This file also allows different kit to be loaded depending on different conditions, such as terrain conditions and mission type, thus maximizing the re-use of the specification file.
 
@@ -14,7 +14,16 @@ All the keys in the kit specification files have special meaning and their level
 
 ### Structure
 
-On the top level of the document, there are specifications for visibility and terrain conditions (more on those under the heading **Kit object conditions**), universal kit collections (more on kit collections under the heading **Kit collections**), universal crate cargo (more on crate cargo under the heading **Kit containers**) and finally the object **Group types**.
+On the top level of the document, there are specifications for visibility and terrain conditions (more on those under the heading **Kit object conditions**), universal kit collection definitions (more on kit collections under the heading **Kit collections**), universal crate cargo (more on crate cargo under the heading **Kit containers**) and finally the object **Group types**.
+
+```yaml
+---
+visibility_conditions: <Array of condition objects>
+terrain_conditions: <Array of condition objects>
+kit_collection_definitions: <Array of kit collection objects definitions>
+crate_cargo: <Array of kit objects>
+group_types: <Array of group objects>
+```
 
 #### Group types
 
@@ -30,10 +39,22 @@ A group type object has several keys:
   * An array of all the names for all the groups in the mission that needs to be kitted out according to this group type object.
 * `group_conditions` (Optional)
   * Possible kit conditions that only apply to that group type (more on group conditions under the heading **Kit object conditions**).
+* `kit_collection_definitions` (Optional)
+  * Group level kit collection definitions (more on kit collections under the heading **Kit collections**)
 * `roles`
   * An array of **role objects** that represents all the unit roles the group has.
 
-### Group naming
+```yaml
+group_types:
+  - title: <String>
+    description: <String>
+    group_names: <Array of string>
+    kit_collection_definitions: <Array of kit collection objects definitions>
+    group_conditions: <Array of condition objects>
+    roles: <Array of role objects>
+```
+
+#### Group naming
 
 The ZAKM kits out all units and optionally even some crates based on which group they are in, in addion to unit role.
 The format used to declare which unit or crate belongs to which group is the [CBA_A3 Name Groups in Lobby](https://github.com/CBATeam/CBA_A3/wiki/Name-Groups-in-Lobby) format.
@@ -59,7 +80,25 @@ A role object has several keys:
 * `description` (Optional)
   * A longer description.
 * `in_role_description`
-  * 
+  * The piece of text in a unit's *Role Description* that will identify the unit as belonging to this role.
+  * For example, if you have two rifleman in two different fire teams that are in the same group (i.e: A squad) called `Dragon'1` and those rifleman are called `1 [R]@Dragon'1` and `2 [R]@Dragon'1`, then in role object for the rifleman role for the group, you would put in it's `in_role_description`: `"[R]"`, as that is common to both units and to any other groups of the same type, for example a Dragon'2.
+* `role_conditions`
+  * Possible kit conditions that only apply to the role (more on role conditions under the heading **Kit object conditions**).
+* `on_person`
+  * Equippable kit and kit containers that go onto each of the units of that role. More information of those under the *Equippable kit* and *Kit containers* headings.
+* `crate_cargo`
+  * Any array of crate kit containers that both belong to the group and has that role's share of their kit inside of it. More about crate kit containers under the *Kit containers* heading.
+  * For example, if rifleman of that role should start with their rifles in their group's crate, then this is where you would put it instead of in `on_person`.
+
+```yaml
+roles:
+  - title: <String>
+    description: <String>
+    in_role_description: <String>
+    role_conditions: <Array of condition objects>
+    on_person: <Array of kit objects in kit cargo or equipable kit objects>
+    crate_cargo: <Array of crate kit containers>
+```
 
 ## Kit objects
 
@@ -131,7 +170,7 @@ Simply lowercase versions of what is found in the [ZAKI](https://github.com/zulu
 * `vests`
 * `watches`
 
-## equippable kit
+## Equippable kit
 
 Kit can be equipped directly to a person, via their role.
 This is done by simply putting a kit object and it's category in the `on_person` object of that role.
@@ -238,7 +277,7 @@ Also please note that at this time, the ZAKM does not validate that a compatible
 
 A kit container is just an object that can end up containing any number of any category of kit, and there are 4 kinds of kit containers.
 
-There are crate containers, for example:
+There are crate kit containers, for example:
 
 ```yaml
 crate_cargo:
@@ -256,7 +295,7 @@ crate_cargo:
 ```
 
 Each crate has a name (for e.g: `Main` and `Medical`) and are elements in an array that belongs to the `crate_cargo` object.
-Crate cargo can be in the scope of a group, or at the top level of the document, which can be shared among all groups.
+Crate cargo can be in the scope of a group (in which it looks for crates that belong to the relevant groups according to the [CBA_A3 Name Groups in Lobby](https://github.com/CBATeam/CBA_A3/wiki/Name-Groups-in-Lobby) format), or at the top level of the document, which can be shared among all groups (without the CBA_A3 group naming format).
 
 The other containers are on an actual person, in the `on_person` object. There are 3 and each of them and how they are written are as follow:
 
@@ -424,3 +463,63 @@ role_conditions:
 ```
 
 ## Kit collections
+
+A kit collection is just a placeholder for any number of kit objects. This allows you to avoid repetition and to repeat certain parts of kit among different roles and crates. For example, if there are 2 universal crates (`crate_cargo` at the top level of the document), where one of those crates is a starting crate that contains a weapon, ammo for that rifle and grenades and the second crate contains only the ammo and grenades for resupply, then instead representing that like this:
+
+```yaml
+crate_cargo:
+  - crate: starting crate
+    primary_weapons:
+      - type: SMA_M4afg_SM
+    magazines:
+      - type: SMA_30Rnd_556x45_M855A1
+        count: 8
+      - type: SMA_30Rnd_556x45_M855A1_Tracer
+        count: 2
+    grenades:
+      - type: HandGrenade
+        count: 4
+      - type: SmokeShell
+        count: 8
+  - crate: resupply crate
+    magazines:
+      - type: SMA_30Rnd_556x45_M855A1
+        count: 8
+      - type: SMA_30Rnd_556x45_M855A1_Tracer
+        count: 2
+    grenades:
+      - type: HandGrenade
+        count: 4
+      - type: SmokeShell
+        count: 8
+```
+
+We could write it like so:
+
+```yaml
+kit_collection_definitions:
+  - name: grenades and ammo
+    magazines:
+      - type: SMA_30Rnd_556x45_M855A1
+        count: 8
+      - type: SMA_30Rnd_556x45_M855A1_Tracer
+        count: 2
+    grenades:
+      - type: HandGrenade
+        count: 4
+      - type: SmokeShell
+        count: 8
+crate_cargo:
+  - crate: starting crate
+    primary_weapons:
+      - type: SMA_M4afg_SM
+    kit_collections:
+      - grenades and ammo
+  - crate: resupply crate
+    kit_collections:
+      - grenades and ammo
+```
+
+You can see here that we define some kit objects (a kit collection) under the `kit_collection_definitions` key and name it `grenades and ammo` with the `name` attribute that is on the same level as the kit objects. Then we refer to that collection of kit where we want it in the actual crate, by defining the `kit_collection` key in those places, then 
+
+There are 2 leve

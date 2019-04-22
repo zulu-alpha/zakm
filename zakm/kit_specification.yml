@@ -54,7 +54,7 @@ terrain_conditions:
       - panthera3
       - anim_helvantis_v2
       - tem_ihantala
-kit_collections:
+kit_collection_definitions:
   - name: Grunt clothing
     goggles:
       - type: G_Combat
