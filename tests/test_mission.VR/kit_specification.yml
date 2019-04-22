@@ -1,8 +1,8 @@
 ---
-visibility_conditions:
+visibility_condition_definitions:
   - name: Night
   - name: Day
-terrain_conditions:
+terrain_condition_definitions:
   - name: Arid
     worlds:
       - farkhar
@@ -264,7 +264,7 @@ group_types:
   - title: Rifle Squad
     description: General purpose light infantry squad that maneuvers and closes with the 
       enemy.
-    group_conditions:
+    group_condition_definitions:
       - name: CQC
     groups_names: 
       - Dragon'1
@@ -275,7 +275,7 @@ group_types:
           of the squad while responding to the directions of the Platoon Leader and 
           coordinating the squad’s actions with the rest of the platoon.
         in_role_description: "[SL]"
-        role_conditions:
+        role_condition_definitions:
           - name: LMG bearer
           - name: MAAWS HEDP bearer
           - name: MAAWS HEAT bearer

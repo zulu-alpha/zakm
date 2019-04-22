@@ -14,13 +14,13 @@ All the keys in the kit specification files have special meaning and their level
 
 ### Structure
 
-On the top level of the document, there are specifications for visibility and terrain conditions (more on those under the heading **Kit object conditions**), universal kit collection definitions (more on kit collections under the heading **Kit collections**), universal crate cargo (more on crate cargo under the heading **Kit containers**) and finally the object **Group types**.
+On the top level of the document, there are specifications for visibility and terrain conditions (more on those under the heading **Kit object conditions**), universal kit collection definitions (more on kit collections under the heading **Kit collection definitions**), universal crate cargo (more on crate cargo under the heading **Kit containers**) and finally the object **Group types**.
 
 ```yaml
 ---
-visibility_conditions: <Array of condition objects>
-terrain_conditions: <Array of condition objects>
-kit_collection_definitions: <Array of kit collection objects definitions>
+visibility_condition_definitions: <Array of condition objects definitions> - Optional
+terrain_condition_definitions: <Array of condition objects definitions> - Optional
+kit_collection_definitions: <Array of kit collection objects definitions> - Optional
 crate_cargo: <Array of kit objects>
 group_types: <Array of group objects>
 ```
@@ -382,6 +382,8 @@ The exception to this is with Terrain conditions, where they will also have a `w
 
 Notice as well that the above object is an element in an array, as you will necessarily want to implement several conditions for each condition type.
 
+The names of the keys you use to define the conditions are the same as their usages above, except that they have `_definitions` at the end and they are singular. For example `terrain_condition_definitions` instead of `terrain_conditions`.
+
 The 4 condition types are:
 
 #### Visibility conditions
@@ -394,7 +396,7 @@ This is defined at the top level of the specification file (not inside anything 
 For example:
 
 ```yaml
-visibility_conditions:
+visibility_conditions_definitions:
   - name: Night
   - name: Day
 ```
@@ -421,7 +423,7 @@ Where `<Some terrain name>` is the [world name](https://community.bistudio.com/w
 For example:
 
 ```yaml
-terrain_conditions:
+terrain_condition_definitions:
   - name: Arid
     worlds:
       - takistan
@@ -445,7 +447,7 @@ This is a group level condition defined inside the scope of a group that is shar
 For example:
 
 ```yaml
-group_conditions:
+group_condition_definitions:
   - name: CQC
   - name: Long Range
   - name: Wetworks
@@ -457,7 +459,7 @@ Examples are Ammo Bearer or Laser Designator, along with many other possibilitie
 This is a condition that is defined inside of a role and which only effects that particular role.
 
 ```yaml
-role_conditions:
+role_condition_definitions:
   - name: Long range communication
   - name: Laser designator
 ```
