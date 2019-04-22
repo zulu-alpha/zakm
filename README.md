@@ -464,7 +464,31 @@ role_conditions:
 
 ## Kit collections
 
-A kit collection is just a placeholder for any number of kit objects. This allows you to avoid repetition and to repeat certain parts of kit among different roles and crates. For example, if there are 2 universal crates (`crate_cargo` at the top level of the document), where one of those crates is a starting crate that contains a weapon, ammo for that rifle and grenades and the second crate contains only the ammo and grenades for resupply, then instead representing that like this:
+A kit collection is just a placeholder for any number of kit objects. This allows you to avoid repetition and to repeat certain parts of kit among different roles and crates. They are defined in one part of the document and referred to anywhere else in the document where you want the defined kit to be.
+
+Definition:
+
+```yaml
+kit_collection_definitions: <Array of kit collection definitions>
+```
+
+Where a kit collection definition would be:
+
+```yaml
+name: <Name of collection>
+<Kit object categories>
+```
+
+Where `<Kit object categories>` are just kit objects as described under the heading *Kit objects*.
+To use the any defined kit collection, you would put the following anywhere that you would like that kit to appear (such as in a crate, backpack, or even on person or on a weapon for example):
+
+```yaml
+kit_collections: <Array of kit collection definition names>
+```
+
+Where you would put the name as defined in `name` for each of the kit collections that you would like to appear there.
+
+For example, if there are 2 universal crates (`crate_cargo` at the top level of the document), where one of those crates is a starting crate that contains a weapon, ammo for that rifle and grenades and the second crate contains only the ammo and grenades for resupply, then instead representing that like this:
 
 ```yaml
 crate_cargo:
@@ -520,6 +544,11 @@ crate_cargo:
       - grenades and ammo
 ```
 
-You can see here that we define some kit objects (a kit collection) under the `kit_collection_definitions` key and name it `grenades and ammo` with the `name` attribute that is on the same level as the kit objects. Then we refer to that collection of kit where we want it in the actual crate, by defining the `kit_collection` key in those places, then 
+You can see here that we define some kit objects (a kit collection) under the `kit_collection_definitions` key and name it `grenades and ammo` with the `name` attribute. Then we refer to that collection of kit where we want it in the actual crate, by defining the `kit_collection` key in those places, then put the name of the collection as an element of that key's array.
 
-There are 2 leve
+### Group level kit collection definitions
+
+There are 2 places that you can define kit collections. The first is shown in the above example and when defined will be available everywhere. The second place is inside any group type object (as described under the heading *Group types*). When placed there, then those kit collection definitions will only be available to that group type and it's roles.
+Note that if the name of a group type kit collection definition matches a top level (or universal) definition, then the group level one will overwrite it for the group that it's defined in.
+
+The use of this is that if there are commonly used kit collections that only a group type uses, then it helps keep the universal definition cleaner by not having to include it there and makes it easier to understand which collections belong to a specific group type.
