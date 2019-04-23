@@ -96,7 +96,7 @@ roles:
     description: <String>
     in_role_description: <String>
     role_condition_definitions: <Array of condition objects>
-    on_person: <Array of kit objects in kit cargo or equipable kit objects>
+    on_person: <Array of kit objects in kit cargo or equippable kit objects>
     crate_cargo: <Array of crate kit containers>
 ```
 
