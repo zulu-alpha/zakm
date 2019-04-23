@@ -182,7 +182,7 @@ on_person:
     - type: za_fat1_soldier_arid
 ```
 
-Note that the kit object is part of an array. This is because the ZAKM allows different equippable kit to be equipped depending on different conditions.
+Note that the kit object is part of an array. This is because the ZAKM allows different equippable kit to be equipped depending on different conditions. Also note that you can't use `count` as there will always be one equippable kit for each slot.
 For example, to equip a different uniform depending terrain conditions, you would write it like so:
 
 ```yaml
