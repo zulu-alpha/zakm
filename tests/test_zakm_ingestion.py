@@ -9,3 +9,7 @@ def test_test():
     with open(SPEC_PATH, "r") as open_file:
         data = load(open_file.read())
         pass
+
+
+def test_ingest_top_level():
+    pass
