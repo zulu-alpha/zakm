@@ -37,7 +37,7 @@ A group type object has several keys:
   * A longer description.
 * `group_names`
   * An array of all the names for all the groups in the mission that needs to be kitted out according to this group type object.
-* `group_conditions` (Optional)
+* `group_condition_definitions` (Optional)
   * Possible kit conditions that only apply to that group type (more on group conditions under the heading **Kit object conditions**).
 * `kit_collection_definitions` (Optional)
   * Group level kit collection definitions (more on kit collections under the heading **Kit collections**)
@@ -50,7 +50,7 @@ group_types:
     description: <String>
     group_names: <Array of string>
     kit_collection_definitions: <Array of kit collection objects definitions>
-    group_conditions: <Array of condition objects>
+    group_condition_definitions: <Array of condition objects>
     roles: <Array of role objects>
 ```
 
