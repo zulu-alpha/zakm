@@ -350,7 +350,7 @@ Each condition type can have any number of conditions, which are just user defin
 To add a condition to a kit object, you simply add the condition type key that the condition belongs to in the kit object and specify all the conditions that the kit should be applied for. For example:
 
 ```yaml
-type: za_fat1_soldier_trans
+- type: za_fat1_soldier_trans
   terrain_conditions:
     - Transitional
     - Woodland
