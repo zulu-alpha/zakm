@@ -1,0 +1,214 @@
+{
+    "backpacks": {
+        "CUP_B_AGS30_Gun_Bag": {
+            "descriptio": "",
+            "display_name": "AGS30 Gun Bag"
+        },
+        "CUP_B_AGS30_Tripod_Bag": {
+            "description": "",
+            "display_name": "AGS30 Tripod Bag"
+        }
+    },
+    "binoculars": {
+        "CUP_SOFLAM": {
+            "description": "AN/PEQ-1 Special Operation Forces Laser Acquisition Marker (SOFLAM)",
+            "display_name": "AN/PEQ-1 SOFLAM"
+        },
+        "Binocular": {
+            "description": "Magnification: 4x-12x",
+            "display_name": "Binoculars"
+        }
+    },
+    "bipod_attachments": {
+        "bipod_03_F_blk": {
+            "description": "",
+            "display_name": "Bipod (Black) [AAF]"
+        },
+        "bipod_02_F_blk": {
+            "description": "",
+            "display_name": "Bipod (Black) [CSAT]"
+        }
+    },
+    "compasses": {
+        "ItemCompass": {
+            "description": "Useful for navigation.",
+            "display_name": "Compass"
+        }
+    },
+    "explosives": {
+        "APERSMineDispenser_Mag": {
+            "description": "Type: Charge Rounds: 1 Used on: Ground",
+            "display_name": "APERS Mine Dispenser"
+        },
+        "CUP_Mine_M": {
+            "description": "AT-15 US Anti-Tank Land Mine",
+            "display_name": "AT-15 Anti-Tank Mine"
+        }
+    },
+    "goggles": {
+        "G_Aviator": {
+            "description": "",
+            "display_name": "Aviator Glasses"
+        },
+        "G_Balaclava_blk": {
+            "description": "",
+            "display_name": "Balaclava (Black)"
+        }
+    },
+    "grenades": {
+        "ACE_M14": {
+            "description": "Incendiary grenade used to destroy weapons, ammunition and other equipment.",
+            "display_name": "AN-M14 Incendiary Grenade"
+        },
+        "Chemlight_blue": {
+            "description": "Type: Light - Blue Rounds: 1 Used in: Hand",
+            "display_name": "Chemlight (Blue)"
+        }
+    },
+    "headgear": {
+        "CUP_H_RUS_6B27": {
+            "description": "Armor Level II",
+            "display_name": "6B27 Helmet (light green)"
+        },
+        "CUP_H_RUS_6B27_NVG": {
+            "description": "Armor Level II",
+            "display_name": "6B27 Helmet (light green, NVG mount)"
+        }
+    },
+    "interfaces": {
+        "ItemAndroid": {
+            "description": "GD300 Rugged Wearable Computer",
+            "display_name": "GD300 Android"
+        },
+        "ItemGPS": {
+            "description": "Enables accurate positioning.",
+            "display_name": "GPS"
+        }
+    },
+    "magazines": {
+        "ACE_10Rnd_338_300gr_HPBT_Mag": {
+            "description": "Caliber: 8.6x70mm (300gr Lapua Scenar) Rounds: 10",
+            "display_name": ".338 10Rnd Mag (300gr Lapua Scenar)"
+        },
+        "ACE_10Rnd_338_API526_Mag": {
+            "description": "Caliber: 8.6x70mm (API526) Rounds: 10",
+            "display_name": ".338 10Rnd Mag (API526)"
+        }
+    },
+    "maps": {
+        "ItemMap": {
+            "description": "Enables viewing map.",
+            "display_name": "Map"
+        }
+    },
+    "miscellaneous": {
+        "ACE_RangeTable_82mm": {
+            "description": "Range Table for the Mk6 82mm Mortar",
+            "display_name": "82mm Rangetable"
+        },
+        "ACRE_PRC117F": {
+            "description": "AN/PRC-117F Manpack Radio",
+            "display_name": "AN/PRC-117F"
+        }
+    },
+    "muzzle_attachments": {
+        "SMA_AAC_762_sdn6": {
+            "description": "7.62mm Silencer Threaded For AAC Muzzle Breaks",
+            "display_name": "AAC 762-SDN-6 (Black)"
+        },
+        "SMA_AAC_762_sdn6_d": {
+            "description": "7.62mm Silencer Threaded For AAC Muzzle Breaks",
+            "display_name": "AAC 762-SDN-6 (Desert)"
+        }
+    },
+    "nvgs": {
+        "CUP_NVG_PVS14": {
+            "description": "Night Vision Goggles",
+            "display_name": "AN/PVS-14"
+        },
+        "CUP_NVG_PVS15_black": {
+            "description": "Night Vision Goggles",
+            "display_name": "AN/PVS-15 (Black)"
+        }
+    },
+    "optic_attachments": {
+        "CUP_optic_AN_PAS_13c1": {
+            "description": "Midrange Thermal Weapon Sight",
+            "display_name": "AN/PAS 13C1 TWS"
+        },
+        "CUP_optic_AN_PAS_13c2": {
+            "description": "Long Range Thermal Weapon Sight",
+            "display_name": "AN/PAS 13C2 HTWS"
+        }
+    },
+    "primary_weapons": {
+        "CUP_glaunch_6G30": {
+            "description": "Grenade launcher",
+            "display_name": "6G30"
+        },
+        "CUP_sgun_AA12": {
+            "description": "Automatic shotgun  Caliber: 12 gauge",
+            "display_name": "AA-12"
+        }
+    },
+    "secondary_weapons": {
+        "CUP_launch_Javelin": {
+            "description": "Anti-tank missile launcher  Guided",
+            "display_name": "FGM-148 Javelin"
+        },
+        "CUP_launch_FIM92Stinger": {
+            "description": "Anti-tank missile launcher  Guided",
+            "display_name": "FIM-92F Stinger"
+        }
+    },
+    "side_attachments": {
+        "SMA_ANPEQ15_TOP_TAN_ACR": {
+            "description": "Emits light visible in the image intensification mode (night vision).",
+            "display_name": "AN/PEQ-15 (Top Mount) ACR"
+        },
+        "SMA_ANPEQ15_TOP_TAN_M4": {
+            "description": "Emits light visible in the image intensification mode (night vision).",
+            "display_name": "AN/PEQ-15 (Top Mount) AR"
+        }
+    },
+    "sidearms": {
+        "CUP_hgun_Compact": {
+            "description": "Semi-automatic pistol Caliber: 9x19mm",
+            "display_name": "CZ 75 COMPACT"
+        },
+        "CUP_hgun_Duty": {
+            "description": "Semi-automatic pistol Caliber: 9x19mm",
+            "display_name": "CZ 75 DUTY"
+        }
+    },
+    "uniforms": {
+        "U_C_IDAP_Man_cargo_F": {
+            "description": "",
+            "display_name": "Aid Worker Clothes (Cargo) [IDAP]"
+        },
+        "U_C_IDAP_Man_Jeans_F": {
+            "description": "",
+            "display_name": "Aid Worker Clothes (Jeans) [IDAP]"
+        }
+    },
+    "vests": {
+        "CUP_V_RUS_6B3_1": {
+            "description": "Armor Level III",
+            "display_name": "6B3 (Flora)"
+        },
+        "CUP_V_CDF_6B3_1_Green": {
+            "description": "Armor Level III",
+            "display_name": "6B3 (Green)"
+        }
+    },
+    "watches": {
+        "ACE_Altimeter": {
+            "description": "Used to show height, descent rate and the time.",
+            "display_name": "Altimeter Watch"
+        },
+        "ItemWatch": {
+            "description": "Useful for recognizing clock position.",
+            "display_name": "Watch"
+        }
+    }
+}

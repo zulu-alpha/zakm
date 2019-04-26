@@ -96,9 +96,6 @@ KIT_CATEGORIES: tuple = (
     NAME_KIT_CAT_WATCHES,
 )
 
-DB_NAME_DESCRIPTION: str = "description"
-DB_NAME_DISPLAY_NAME: str = "display_name"
-
 KIT_EQUIPPABLE: tuple = (
     NAME_KIT_CAT_BACKPACKS,
     NAME_KIT_CAT_BINOCULARS,
@@ -145,6 +142,29 @@ KIT_CARGO_CONTAINERS: tuple = (
     NAME_VEST_CARGO,
     NAME_BACKPACK_CARGO,
 )
+
+DB_NAME_DESCRIPTION: str = "description"
+DB_NAME_DISPLAY_NAME: str = "display_name"
+
+# https://json-schema.org/learn/getting-started-step-by-step.html
+_schema_kit_rows = {
+    "^.*$": {
+        "type": "object",
+        "properties": {
+            DB_NAME_DESCRIPTION: {"type": "string"},
+            DB_NAME_DISPLAY_NAME: {"type": "string"},
+        },
+        "required": [DB_NAME_DESCRIPTION, DB_NAME_DISPLAY_NAME],
+    }
+}
+DB_SCHEMA = {
+    "type": "object",
+    "properties": {
+        i: {"type": "object", "patternProperties": _schema_kit_rows}
+        for i in KIT_CATEGORIES
+    },
+    "required": list(KIT_CATEGORIES),
+}
 
 
 # TOP_KEYS: tuple = (
