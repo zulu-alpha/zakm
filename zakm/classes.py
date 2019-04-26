@@ -1,16 +1,19 @@
 from dataclasses import dataclass, field, fields, MISSING
-from typing import List, ClassVar
+from typing import List, ClassVar, Dict, Set, Union
 from zakm import config
 
 
-@dataclass
+TYPE_OBJECT_VALUE = Union[str, int, list, dict]
+TYPE_OBJECT = Dict[str, TYPE_OBJECT_VALUE]
+
+
 class Base:
     @classmethod
-    def get_all_missing_required_keys(cls, keys: set) -> set:
+    def get_all_missing_required_keys(cls, keys: Set[str]) -> Set[str]:
         """Return all the required spec file keys not present in the given set."""
         required = set(
             [
-                _field.metadata["spec_mapping"]
+                _field.metadata["spec_mapping"]  # type: ignore
                 for _field in fields(cls)
                 if _field.default is MISSING
             ]
@@ -18,18 +21,20 @@ class Base:
         return required.difference(keys)
 
     @classmethod
-    def get_all_invalid_keys(cls, keys: set) -> set:
+    def get_all_invalid_keys(cls, keys: Set[str]) -> Set[str]:
         """Return all the given spec file keys that are not valid."""
-        valid = set([_field.metadata["spec_mapping"] for _field in fields(cls)])
+        valid = set(
+            [_field.metadata["spec_mapping"] for _field in fields(cls)]  # type: ignore
+        )
         return keys.difference(valid)
 
     @classmethod
-    def get_invalid_key_value_types(cls, key_values: dict) -> dict:
+    def get_invalid_key_value_types(cls, key_values: TYPE_OBJECT) -> Dict[str, str]:
         """Return a mapping of keys with incorrect value types and their expected value
         types in human readable form.
         """
         correct_key_types = {
-            _field.metadata["spec_mapping"]: _field.type
+            _field.metadata["spec_mapping"]: _field.type  # type: ignore
             for _field in fields(cls)
         }
         return {

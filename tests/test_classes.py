@@ -67,25 +67,25 @@ class TestGetInvalidKeyValueTypes:
     @dataclass
     class DummyClass(Base):
         key_1: str = field(metadata={"spec_mapping": "Key str"})
-        key_2: int = field(metadata={"spec_mapping": "Key int"})
+        key_2: float = field(metadata={"spec_mapping": "Key float"})
         key_3: list = field(default_factory=list, metadata={"spec_mapping": "Key list"})
-        key_4: dict = field(default_factory=list, metadata={"spec_mapping": "Key dict"})
+        key_4: dict = field(default_factory=dict, metadata={"spec_mapping": "Key dict"})
 
     def test_one_wrong(self):
         """Test that the one key with the wrong value type gets returned."""
         result = self.DummyClass.get_invalid_key_value_types(
-            {"Key str": "wee", "Key int": 5, "Key list": -1, "Key dict": {"wee": 1}}
+            {"Key str": "wee", "Key float": 5, "Key list": -1, "Key dict": {"wee": 1}}
         )
         assert result == {"Key list": config.READABLE_YAML_PYTHON_TYPES_MAPPING[list]}
 
     def test_all_wrong(self):
         """Test that all the keys with the wrong value types gets returned."""
         result = self.DummyClass.get_invalid_key_value_types(
-            {"Key str": 21, "Key int": "Ahh", "Key list": {"wee": 1}, "Key dict": 50}
+            {"Key str": 21, "Key float": "Ahh", "Key list": {"wee": 1}, "Key dict": 50}
         )
         assert result == {
-            "Key str": config.READABLE_YAML_PYTHON_TYPES_MAPPING[str],
-            "Key int": config.READABLE_YAML_PYTHON_TYPES_MAPPING[int],
+            "Key str": config.READABLE_YAML_PYTHON_TYPES_MAPPING[list],
+            "Key float": config.READABLE_YAML_PYTHON_TYPES_MAPPING[float],
             "Key list": config.READABLE_YAML_PYTHON_TYPES_MAPPING[list],
             "Key dict": config.READABLE_YAML_PYTHON_TYPES_MAPPING[dict],
         }
@@ -95,7 +95,7 @@ class TestGetInvalidKeyValueTypes:
         result = self.DummyClass.get_invalid_key_value_types(
             {
                 "Key str": "wee",
-                "Key int": 3,
+                "Key float": 3,
                 "Key list": [1, 2, 3],
                 "Key dict": {"ahh": [1, 2]},
             }
@@ -108,7 +108,7 @@ class TestGetInvalidKeyValueTypes:
             {"Key str": 21, "Key list": {"wee": 1}}
         )
         assert result == {
-            "Key str": config.READABLE_YAML_PYTHON_TYPES_MAPPING[str],
+            "Key str": config.READABLE_YAML_PYTHON_TYPES_MAPPING[list],
             "Key list": config.READABLE_YAML_PYTHON_TYPES_MAPPING[list],
         }
 
