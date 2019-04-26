@@ -96,7 +96,8 @@ KIT_CATEGORIES: tuple = (
     NAME_KIT_CAT_WATCHES,
 )
 
-DB_MAPPING: dict = {i: i[0].upper() + i[1:] for i in KIT_CATEGORIES}
+DB_NAME_DESCRIPTION: str = "description"
+DB_NAME_DISPLAY_NAME: str = "display_name"
 
 KIT_EQUIPPABLE: tuple = (
     NAME_KIT_CAT_BACKPACKS,

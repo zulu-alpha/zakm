@@ -110,8 +110,7 @@ Any item of kit (such as weapons, magazines, radios, uniforms, backpacks, etc.) 
     count: <negative or positive number>
 ```
 
-The `<category>` is the category name as seen in the [ZAKI](https://github.com/zulu-alpha/zaki) DB for the kit but in lower case, so for example, `Primary_Weapons` from the DB will be `primary_weapons` when written in the kit specification file.
-
+The `<category>` is the category name as seen in the [ZAKI](https://github.com/zulu-alpha/zaki) DB for the kit.
 `<class name>` is the class name for the item as found in the [ZAKI](https://github.com/zulu-alpha/zaki) DB.
 In this example from the DB, the class name is `hgun_P07_F`:
 
