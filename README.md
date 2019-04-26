@@ -358,6 +358,8 @@ To add a condition to a kit object, you simply add the condition type key that t
 
 Notice that the two conditions, `Transitional` and `Woodland`. This allows you to for example have a certain item of clothing applied for both Transitional and Woodland terrain conditions.
 
+This works because when you use multiple conditions of the **same type** (in this example `terrain_conditions`), then for the kit to apply **any** of those conditions must be true.
+
 You can also have as many of the 4 condition types at the same time, such as in this example:
 
 ```yaml
@@ -369,6 +371,27 @@ You can also have as many of the 4 condition types at the same time, such as in 
 ```
 
 Here, these particular Tan coloured NVGs are only used when it is both night and arid.
+
+The is because when you use conditions of **different types** (in this example `visibility_conditions` and `terrain_conditions`), then for the kit to apply **both** of those conditions types must be true.
+
+When you have multiple condition types and each of those in turn has multiple conditions of their own, then in order for the kit to apply, then all of the condition types must have at least one of their conditions be true. If any one of the condition types has no conditions true, then the kit will not apply.
+
+For example:
+
+```yaml
+- type: CUP_arifle_Mk17_STD_woodland
+  terrain_conditions:
+    - Transitional
+    - Woodland
+  group_conditions:
+    - Base of fire element
+    - Observation
+  role_conditions:
+    - Designated Marksmen
+    - Spotter
+```
+
+In this example, for the kit to apply, the terrain must be either transitional, woodland or both (if that was possible) **and** the group condition must be either Base of fire element, Observation or both **and** the role condition must be either Designated Marksmen, Spotter or both.
 
 ### Condition definitions
 
