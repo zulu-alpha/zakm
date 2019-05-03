@@ -1,9 +1,27 @@
 """Test the functionality of the ZAKM classes."""
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields
 from typing import Any
 import pytest
 from zakm.classes import Base
 from zakm import config
+
+
+class TestSpecFields:
+    """Test that it returns spec mapped fields."""
+
+    @dataclass
+    class DummyClass(Base):
+        spec_field: Any = field(metadata={"spec_mapping": "exists"})
+        not_spec: Any = None
+
+    def test_ok(self):
+        """Test that one spec map field and one not gives the former."""
+        spec_field = None
+        for _field in fields(self.DummyClass):
+            if _field.name == "spec_field":
+                spec_field = _field
+                break
+        assert self.DummyClass.spec_fields() == [spec_field]
 
 
 class TestGetAllMissingRequiredKeys:

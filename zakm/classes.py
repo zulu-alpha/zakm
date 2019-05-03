@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field, fields, MISSING
-from typing import List, Dict, Set, Union
+from dataclasses import dataclass, field, fields, MISSING, Field
+from typing import List, Dict, Set, Union, Type
 from zakm import config
 
 
@@ -8,14 +8,26 @@ TYPE_YAML_OBJECT_VALUE = Union[str, int, list, dict]
 TYPE_YAML_OBJECT = Dict[str, TYPE_YAML_OBJECT_VALUE]
 
 
+@dataclass
 class Base:
+    parent: Type[Base]
+
+    @classmethod
+    def spec_fields(cls) -> List[Field]:
+        """Get all fields that have a spec_mapping in their metadata."""
+        return [
+            _field
+            for _field in fields(cls)
+            if "spec_mapping" in _field.metadata  # type: ignore
+        ]
+
     @classmethod
     def get_all_missing_required_keys(cls, keys: Set[str]) -> Set[str]:
         """Return all the required spec file keys not present in the given set."""
         required = set(
             [
                 _field.metadata["spec_mapping"]  # type: ignore
-                for _field in fields(cls)
+                for _field in cls.spec_fields()
                 if _field.default is MISSING
             ]
         )
@@ -25,7 +37,10 @@ class Base:
     def get_all_invalid_keys(cls, keys: Set[str]) -> Set[str]:
         """Return all the given spec file keys that are not valid."""
         valid = set(
-            [_field.metadata["spec_mapping"] for _field in fields(cls)]  # type: ignore
+            [
+                _field.metadata["spec_mapping"]  # type: ignore
+                for _field in cls.spec_fields()
+            ]
         )
         return keys.difference(valid)
 
@@ -38,7 +53,7 @@ class Base:
         """
         correct_key_types = {
             _field.metadata["spec_mapping"]: _field.type  # type: ignore
-            for _field in fields(cls)
+            for _field in cls.spec_fields()
         }
         return {
             key: config.READABLE_YAML_PYTHON_TYPES_MAPPING[correct_key_types[key]]
