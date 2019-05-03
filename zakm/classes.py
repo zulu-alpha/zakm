@@ -1,10 +1,11 @@
+from __future__ import annotations
 from dataclasses import dataclass, field, fields, MISSING
-from typing import List, ClassVar, Dict, Set, Union
+from typing import List, Dict, Set, Union
 from zakm import config
 
 
-TYPE_OBJECT_VALUE = Union[str, int, list, dict]
-TYPE_OBJECT = Dict[str, TYPE_OBJECT_VALUE]
+TYPE_YAML_OBJECT_VALUE = Union[str, int, list, dict]
+TYPE_YAML_OBJECT = Dict[str, TYPE_YAML_OBJECT_VALUE]
 
 
 class Base:
@@ -29,7 +30,9 @@ class Base:
         return keys.difference(valid)
 
     @classmethod
-    def get_invalid_key_value_types(cls, key_values: TYPE_OBJECT) -> Dict[str, str]:
+    def get_invalid_key_value_types(
+        cls, key_values: TYPE_YAML_OBJECT
+    ) -> Dict[str, str]:
         """Return a mapping of keys with incorrect value types and their expected value
         types in human readable form.
         """
@@ -40,27 +43,37 @@ class Base:
         return {
             key: config.READABLE_YAML_PYTHON_TYPES_MAPPING[correct_key_types[key]]
             for key, value in key_values.items()
-            if not isinstance(value, correct_key_types[key])
+            if not type(value) == correct_key_types[key]
         }
 
 
 @dataclass
+class KitObject(Base):
+    kit_type: str = field(metadata={"spec_mapping": config.NAME_KIT_OBJECT_TYPE})
+    pass
+
+
+@dataclass
 class VisibilityCondition(Base):
-    __class_str__: ClassVar[str] = config.NAME_VISIBILITY_CONDITION_CLASS_STR
     name: str = field(metadata={"spec_mapping": config.NAME_NAME})
 
     def __str__(self) -> str:
-        return f"{self.name} {config.NAME_VISIBILITY_CONDITION_CLASS_STR}"
+        return f"{self.name} {config.VISIBILITY_CONDITION_CLASS_STR}"
 
 
 @dataclass
 class TerrainCondition(Base):
-    name: str
-    pass
+    name: str = field(metadata={"spec_mapping": config.NAME_NAME})
+    worlds: List[str] = field(
+        metadata={"spec_mapping": config.NAME_TERRAIN_CONDITION_WORLDS}
+    )
+
+    def __str__(self) -> str:
+        return f"{self.name} {config.TERRAIN_CONDITION_CLASS_STR}"
 
 
 @dataclass
 class Specification(Base):
+    database: config.DB_TYPE
     visibility_conditions: List[VisibilityCondition] = field(default_factory=list)
     terrain_conditions: List[TerrainCondition] = field(default_factory=list)
-    pass

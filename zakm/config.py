@@ -1,4 +1,7 @@
 """Global variables and configuration."""
+from typing import Dict
+
+
 READABLE_YAML_PYTHON_TYPES_MAPPING: dict = {
     str: "String",
     int: "Number",
@@ -10,9 +13,10 @@ NAME_NAME: str = "name"
 NAME_TITLE: str = "title"
 NAME_DESCRIPTION: str = "description"
 
-NAME_VISIBILITY_CONDITION_CLASS_STR: str = "Visibility Condition"
+VISIBILITY_CONDITION_CLASS_STR: str = "Visibility Condition"
 NAME_VISIBILITY_CONDITION_DEFINITIONS: str = "visibility_condition_definitions"
 NAME_VISIBILITY_CONDITIONS: str = "visibility_conditions"
+TERRAIN_CONDITION_CLASS_STR: str = "Terrain Condition"
 NAME_TERRAIN_CONDITION_DEFINITIONS: str = "terrain_condition_definitions"
 NAME_TERRAIN_CONDITIONS: str = "terrain_conditions"
 NAME_TERRAIN_CONDITION_WORLDS: str = "worlds"
@@ -165,6 +169,8 @@ DB_SCHEMA = {
     },
     "required": list(KIT_CATEGORIES),
 }
+
+DB_TYPE = Dict[str, Dict[str, Dict[str, str]]]
 
 
 # TOP_KEYS: tuple = (
